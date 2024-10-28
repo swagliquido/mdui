@@ -203,18 +203,19 @@ export class ListItem extends AnchorMixin(
     const hasDescription =
       this.description || this.hasSlotController.test('description');
 
+    const isIcon = (element: HTMLElement) =>
+      isNodeName(element, 'mdui-icon') ||
+      getNodeName(element).startsWith('mdui-icon-');
+
     const className = cc({
       container: true,
       preset,
       'has-icon': hasIcon,
       'has-end-icon': hasEndIcon,
       'has-description': hasDescription,
-      // icon slot 中的元素是否为 mdui-icon 或 mdui-icon-* 组件
-      'is-icon': isNodeName(this.iconElements[0], 'mdui-icon'),
-      // end-icon slot 中的元素是否为 mdui-icon 或 mdui-icon-* 组件
-      'is-end-icon': getNodeName(this.endIconElements[0]).startsWith(
-        'mdui-icon-',
-      ),
+      // icon, end-icon slot 中的元素是否为 mdui-icon 或 mdui-icon-* 组件
+      'is-icon': isIcon(this.iconElements[0]),
+      'is-end-icon': isIcon(this.endIconElements[0]),
     });
 
     return html`<mdui-ripple
