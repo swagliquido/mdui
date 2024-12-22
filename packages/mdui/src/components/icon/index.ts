@@ -50,6 +50,7 @@ export class Icon extends MduiElement<IconEventMap> {
         ]);
 
         return html`<span
+          translate="no"
           style=${styleMap({ fontFamily: familyMap.get(variant) })}
         >
           ${name}
@@ -69,7 +70,7 @@ export class Icon extends MduiElement<IconEventMap> {
   }
 }
 
-export interface IconEventMap {}
+export interface IconEventMap { }
 
 declare global {
   interface HTMLElementTagNameMap {
